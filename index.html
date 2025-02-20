@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Idle Clicker Game</title>
+    <title>Idle Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Idle Clicker</h1>
-    <p>Money: <span id="money">0</span></p>
-    <button id="earn-btn">Click to Earn</button>
-    <button id="upgrade-btn">Buy Upgrade (Cost: 10)</button>
-    <button id="reset-btn">Reset Game</button>
     
-    <!-- Version number display -->
-    <p id="version"></p>
+    <p>Money: <span id="money">0</span></p>
+    <button onclick="earnMoney()">Click to Earn</button>
+    <button onclick="buyUpgrade()">Buy Upgrade (Cost: <span id="upgradeCost">10</span>)</button>
+    
+    <p>Income per second: <span id="incomePerSecond">0</span></p>
+
+    <button onclick="prestige()">Prestige (Resets for Bonus!)</button>
+    <p>Prestige Points: <span id="prestigePoints">0</span></p>
+    <p>Multiplier: <span id="prestigeMultiplier">1x</span></p>
+
+    <button onclick="resetGame()">Reset Game</button>
+
+    <p id="version">Version 1.1.0</p>
 
     <script src="game.js"></script>
 </body>
