@@ -3,25 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Idle Game</title>
+    <title>Idle Clicker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Idle Clicker</h1>
-    
-    <p>Money: <span id="money">0</span></p>
-    <button onclick="earnMoney()">Click to Earn</button>
-    <button onclick="buyUpgrade()">Buy Upgrade (Cost: <span id="upgradeCost">10</span>)</button>
-    
-    <p>Income per second: <span id="incomePerSecond">0</span></p>
+    <div class="container">
+        <h1 id="title">Idle Clicker Game</h1>
 
-    <button onclick="prestige()">Prestige (Resets for Bonus!)</button>
-    <p>Prestige Points: <span id="prestigePoints">0</span></p>
-    <p>Multiplier: <span id="prestigeMultiplier">1x</span></p>
+        <div id="stats">
+            <p id="moneyText">Money: <span id="money">0</span></p>
+            <p id="incomeText">Income per second: <span id="incomePerSecond">0</span></p>
+            <p id="prestigeText">Prestige Points: <span id="prestigePoints">0</span></p>
+            <p id="multiplierText">Multiplier: <span id="multiplier">1</span></p>
+        </div>
 
-    <button onclick="resetGame()">Reset Game</button>
+        <div id="buttons">
+            <button onclick="earnMoney()" id="earnBtn">Click to Earn</button>
+            <button onclick="buyUpgrade()" id="upgradeBtn">Buy Upgrade (Cost: <span id="upgradeCost">10</span>)</button>
+            <button onclick="prestige()" id="prestigeBtn">Prestige</button>
+            <button onclick="resetGame()" id="resetBtn">Reset Game</button>
+        </div>
 
-    <p id="version">Version 1.1.0</p>
+        <div id="language-selector">
+            <label for="language">Language: </label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+
+        <div id="version">
+            <p>Version: 1.1.1</p>
+        </div>
+    </div>
 
     <script src="game.js"></script>
 </body>

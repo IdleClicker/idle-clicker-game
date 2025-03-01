@@ -1,20 +1,19 @@
-// Load saved game data or set defaults
 let money = parseFloat(localStorage.getItem("money")) || 0;
 let incomePerSecond = parseFloat(localStorage.getItem("income")) || 0;
 let upgradeCost = parseFloat(localStorage.getItem("upgradeCost")) || 10;
 let prestigePoints = parseFloat(localStorage.getItem("prestigePoints")) || 0;
-let prestigeMultiplier = 1 + prestigePoints * 0.1; // 10% bonus per prestige point
+let multiplier = parseFloat(localStorage.getItem("multiplier")) || 1;
 
 function updateUI() {
     document.getElementById("money").innerText = money.toFixed(2);
     document.getElementById("incomePerSecond").innerText = incomePerSecond.toFixed(2);
+    document.getElementById("prestigePoints").innerText = prestigePoints.toFixed(0);
+    document.getElementById("multiplier").innerText = multiplier.toFixed(2);
     document.getElementById("upgradeCost").innerText = upgradeCost.toFixed(2);
-    document.getElementById("prestigePoints").innerText = prestigePoints;
-    document.getElementById("prestigeMultiplier").innerText = prestigeMultiplier.toFixed(1) + "x";
 }
 
 function earnMoney() {
-    money += 1 * prestigeMultiplier;
+    money += 1 * multiplier;
     updateUI();
     saveGame();
 }
@@ -22,40 +21,32 @@ function earnMoney() {
 function buyUpgrade() {
     if (money >= upgradeCost) {
         money -= upgradeCost;
-        incomePerSecond += 1 * prestigeMultiplier;
-        upgradeCost *= 1.5; // Increase cost progressively
-        updateUI();
+        incomePerSecond += 1;
+        upgradeCost *= 1.5;
         saveGame();
     }
 }
 
-function autoEarnings() {
-    money += (incomePerSecond / 10); // Earn over time
-    updateUI();
-}
-
 function prestige() {
-    if (money >= 1000) { // Require 1000 money to prestige
-        prestigePoints += Math.floor(money / 1000); // Gain 1 point per 1000 money
-        prestigeMultiplier = 1 + prestigePoints * 0.1;
-        
-        // Reset progress but keep prestige points
+    if (money >= 100) {
+        prestigePoints += 1;
         money = 0;
         incomePerSecond = 0;
         upgradeCost = 10;
-
+        multiplier = 1 + prestigePoints * 0.1;
         saveGame();
         updateUI();
-    } else {
-        alert("You need at least 1000 money to prestige!");
     }
 }
 
 function resetGame() {
-    if (confirm("Are you sure you want to reset your game? This will erase ALL progress!")) {
-        localStorage.clear();
-        location.reload();
-    }
+    localStorage.clear();
+    money = 0;
+    incomePerSecond = 0;
+    upgradeCost = 10;
+    prestigePoints = 0;
+    multiplier = 1;
+    updateUI();
 }
 
 function saveGame() {
@@ -63,10 +54,69 @@ function saveGame() {
     localStorage.setItem("income", incomePerSecond);
     localStorage.setItem("upgradeCost", upgradeCost);
     localStorage.setItem("prestigePoints", prestigePoints);
+    localStorage.setItem("multiplier", multiplier);
 }
 
-// Auto earnings every 100ms
+function autoEarnings() {
+    money += (incomePerSecond / 10) * multiplier;
+    updateUI();
+    saveGame();
+}
+
 setInterval(autoEarnings, 100);
 
-// Load saved state on page load
+// Language Support
+const translations = {
+    en: {
+        title: "Idle Clicker Game",
+        moneyText: "Money: ",
+        incomeText: "Income per second: ",
+        prestigeText: "Prestige Points: ",
+        multiplierText: "Multiplier: ",
+        earnBtn: "Click to Earn",
+        upgradeBtn: "Buy Upgrade (Cost: ",
+        prestigeBtn: "Prestige",
+        resetBtn: "Reset Game",
+        version: "Version: 1.1.1"
+    },
+    es: {
+        title: "Juego Idle Clicker",
+        moneyText: "Dinero: ",
+        incomeText: "Ingreso por segundo: ",
+        prestigeText: "Puntos de Prestigio: ",
+        multiplierText: "Multiplicador: ",
+        earnBtn: "Hacer Dinero",
+        upgradeBtn: "Comprar Mejora (Costo: ",
+        prestigeBtn: "Prestigio",
+        resetBtn: "Reiniciar Juego",
+        version: "Versión: 1.1.1"
+    },
+    fr: {
+        title: "Jeu Idle Clicker",
+        moneyText: "Argent: ",
+        incomeText: "Revenu par seconde: ",
+        prestigeText: "Points de Prestige: ",
+        multiplierText: "Multiplicateur: ",
+        earnBtn: "Gagner de l'argent",
+        upgradeBtn: "Acheter une Amélioration (Coût: ",
+        prestigeBtn: "Prestige",
+        resetBtn: "Réinitialiser le Jeu",
+        version: "Version: 1.1.1"
+    }
+};
+
+function changeLanguage() {
+    let selectedLang = document.getElementById("language").value;
+    document.getElementById("title").innerText = translations[selectedLang].title;
+    document.getElementById("moneyText").innerText = translations[selectedLang].moneyText + money.toFixed(2);
+    document.getElementById("incomeText").innerText = translations[selectedLang].incomeText + incomePerSecond.toFixed(2);
+    document.getElementById("prestigeText").innerText = translations[selectedLang].prestigeText + prestigePoints;
+    document.getElementById("multiplierText").innerText = translations[selectedLang].multiplierText + multiplier.toFixed(2);
+    document.getElementById("earnBtn").innerText = translations[selectedLang].earnBtn;
+    document.getElementById("upgradeBtn").innerText = translations[selectedLang].upgradeBtn + upgradeCost.toFixed(2) + ")";
+    document.getElementById("prestigeBtn").innerText = translations[selectedLang].prestigeBtn;
+    document.getElementById("resetBtn").innerText = translations[selectedLang].resetBtn;
+}
+
+// Load saved game state
 updateUI();

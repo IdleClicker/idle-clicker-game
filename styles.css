@@ -1,37 +1,46 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #222;
+    background-color: #333;
     color: white;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #FFD700;
+}
+
+#stats p {
+    font-size: 18px;
 }
 
 button {
     padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    margin: 10px;
     font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-#earn-btn {
-    background-color: #28a745; /* Green */
-    color: white;
+#earnBtn { background-color: #4CAF50; color: white; }
+#upgradeBtn { background-color: #008CBA; color: white; }
+#prestigeBtn { background-color: #FF5733; color: white; }
+#resetBtn { background-color: #AA0000; color: white; }
+
+button:hover {
+    opacity: 0.8;
 }
 
-#upgrade-btn {
-    background-color: #007bff; /* Blue */
-    color: white;
-}
-
-#reset-btn {
-    background-color: #dc3545; /* Red */
-    color: white;
+#language-selector {
+    margin-top: 20px;
 }
 
 #version {
     margin-top: 20px;
-    font-weight: bold;
     font-size: 14px;
-    color: #ffcc00; /* Gold */
+    color: #FFD700;
 }
