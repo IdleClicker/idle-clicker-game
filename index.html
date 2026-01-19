@@ -7,39 +7,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="title">Idle Clicker Game</h1>
+    <h1>Idle Clicker</h1>
+    
+    <p id="money-display">Money: <span id="money">0</span></p>
+    <p id="income-display">Income per second: <span id="income">0</span></p>
+    <p id="prestige-display">Prestige Points: <span id="prestige">0</span></p>
+    <p id="multiplier-display">Multiplier: <span id="multiplier">1x</span></p>
 
-        <div id="stats">
-            <p id="moneyText">Money: <span id="money">0</span></p>
-            <p id="incomeText">Income per second: <span id="incomePerSecond">0</span></p>
-            <p id="prestigeText">Prestige Points: <span id="prestigePoints">0</span></p>
-            <p id="multiplierText">Multiplier: <span id="multiplier">1</span></p>
-        </div>
+    <button class="earn" onclick="earnMoney()">Click to Earn</button>
+    <button class="upgrade" onclick="buyUpgrade()">Buy Upgrade (Cost: 10)</button>
+    <button class="prestige" onclick="prestige()">Prestige (Resets progress but boosts multiplier!)</button>
+    <button class="reset" onclick="resetGame()">Reset Game</button>
+    
+    <label for="language-select">Language:</label>
+    <select id="language-select" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+    </select>
 
-        <div id="buttons">
-            <button onclick="earnMoney()" id="earnBtn">Click to Earn</button>
-            <button onclick="buyUpgrade()" id="upgradeBtn">Buy Upgrade (Cost: <span id="upgradeCost">10</span>)</button>
-            <button onclick="prestige()" id="prestigeBtn">Prestige</button>
-            <button onclick="resetGame()" id="resetBtn">Reset Game</button>
-        </div>
+    <p id="version">Version: 1.1.2</p>
 
-        <div id="language-selector">
-            <label for="language">Language: </label>
-            <select id="language" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-            </select>
-        </div>
-
-        <div id="version">
-            <p>Version: 1.1.1</p>
-        </div>
-    </div>
-
+    <!-- RGB Cursor Logo -->
+<img 
+    src="Logo.png" 
+    alt="Idle Clicker RGB Cursor Logo" 
+    id="game-logo"
+/>
     <script src="game.js"></script>
 </body>
 </html>
+

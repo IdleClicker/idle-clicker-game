@@ -1,46 +1,64 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #333;
+    background-color: #2e2e2e;
     color: white;
 }
 
-.container {
-    margin-top: 20px;
-}
-
-h1 {
-    color: #FFD700;
-}
-
-#stats p {
-    font-size: 18px;
-}
-
 button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    font-size: 16px;
 }
 
-#earnBtn { background-color: #4CAF50; color: white; }
-#upgradeBtn { background-color: #008CBA; color: white; }
-#prestigeBtn { background-color: #FF5733; color: white; }
-#resetBtn { background-color: #AA0000; color: white; }
+.earn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.upgrade {
+    background-color: #2196F3; /* Blue */
+    color: white;
+}
+
+.prestige {
+    background-color: #FF9800; /* Orange */
+    color: white;
+}
+
+.reset {
+    background-color: #F44336; /* Red */
+    color: white;
+}
 
 button:hover {
     opacity: 0.8;
 }
 
-#language-selector {
-    margin-top: 20px;
-}
-
 #version {
     margin-top: 20px;
     font-size: 14px;
-    color: #FFD700;
+    color: #ccc;
+
+    /* Bottom-right RGB logo */
+#game-logo {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    width: 64px;
+    height: auto;
+    opacity: 0.85;
+    pointer-events: none; /* prevents accidental clicks */
+    filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6))
+            drop-shadow(0 0 6px rgba(0, 255, 0, 0.6))
+            drop-shadow(0 0 6px rgba(0, 0, 255, 0.6));
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Optional nice touch: subtle hover if pointer-events are enabled later */
+#game-logo:hover {
+    transform: scale(1.05);
+    opacity: 1;
 }
