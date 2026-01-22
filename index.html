@@ -9,33 +9,60 @@
 <body>
     <h1>Idle Clicker</h1>
     
-    <p id="money-display">Money: <span id="money">0</span></p>
-    <p id="income-display">Income per second: <span id="income">0</span></p>
-    <p id="prestige-display">Prestige Points: <span id="prestige">0</span></p>
-    <p id="multiplier-display">Multiplier: <span id="multiplier">1x</span></p>
+    <div id="offline-message"></div>
 
-    <button class="earn" onclick="earnMoney()">Click to Earn</button>
-    <button class="upgrade" onclick="buyUpgrade()">Buy Upgrade (Cost: 10)</button>
-    <button class="prestige" onclick="prestige()">Prestige (Resets progress but boosts multiplier!)</button>
+    <div class="stats-container">
+        <div class="stat-row" id="money-display">Money: <span id="money">0</span></div>
+        <div class="stat-row" id="income-display">Income per second: <span id="income">0</span></div>
+        <div class="stat-row" id="prestige-display">Prestige Points: <span id="prestige">0</span></div>
+        <div class="stat-row" id="multiplier-display">Multiplier: <span id="multiplier">1x</span></div>
+    </div>
+
+    <button class="earn" id="earn-btn" onclick="earnMoney(event)">Click to Earn (+<span id="click-value">1</span>)</button>
+    
+    <div class="stats-container">
+        <button class="upgrade" id="upgrade-btn" onclick="buyUpgrade()">
+            Buy Upgrade (Cost: <span id="upgrade-cost">10</span>)
+        </button>
+        <div class="progress-bar">
+            <div class="progress-fill" id="upgrade-progress"></div>
+        </div>
+        <div class="progress-text" id="upgrade-progress-text">0% to next upgrade</div>
+    </div>
+
+    <div class="stats-container">
+        <button class="prestige" id="prestige-btn" onclick="prestige()">
+            Prestige (Cost: <span id="prestige-cost">1000</span>) - Get +<span id="prestige-bonus">0.5</span>x multiplier
+        </button>
+        <div class="progress-bar">
+            <div class="progress-fill" id="prestige-progress" style="background: linear-gradient(90deg, #FF9800, #FFC107);"></div>
+        </div>
+        <div class="progress-text" id="prestige-progress-text">0% to prestige</div>
+    </div>
+
     <button class="reset" onclick="resetGame()">Reset Game</button>
     
-    <label for="language-select">Language:</label>
-    <select id="language-select" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-    </select>
+    <div class="language-container">
+        <label for="language-select">Language:</label>
+        <select id="language-select" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="tr">Türkçe</option>
+            <option value="ru">Русский</option>
+        </select>
+    </div>
 
-    <p id="version">Version: 1.1.2</p>
+    <p id="version">Version: 2.0.0</p>
 
     <!-- RGB Cursor Logo -->
-<img 
-    src="Logo.png" 
-    alt="Idle Clicker RGB Cursor Logo" 
-    id="game-logo"
-/>
+    <img 
+        src="Logo.png" 
+        alt="Idle Clicker RGB Cursor Logo" 
+        id="game-logo"
+    />
+
     <script src="game.js"></script>
 </body>
 </html>
-

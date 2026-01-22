@@ -3,46 +3,134 @@ body {
     text-align: center;
     background-color: #2e2e2e;
     color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.stats-container {
+    background-color: #3a3a3a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.stat-row {
+    margin: 10px 0;
+    font-size: 18px;
 }
 
 button {
-    padding: 10px;
+    padding: 12px 20px;
     margin: 5px;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .earn {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     color: white;
 }
 
 .upgrade {
-    background-color: #2196F3; /* Blue */
+    background-color: #2196F3;
     color: white;
 }
 
 .prestige {
-    background-color: #FF9800; /* Orange */
+    background-color: #FF9800;
     color: white;
 }
 
 .reset {
-    background-color: #F44336; /* Red */
+    background-color: #F44336;
     color: white;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     opacity: 0.8;
+    transform: scale(1.05);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #555;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
 }
 
 #version {
     margin-top: 20px;
     font-size: 14px;
     color: #ccc;
+}
 
-    /* Bottom-right RGB logo */
+.floating-number {
+    position: fixed;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+    pointer-events: none;
+    animation: float-up 1s ease-out forwards;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+}
+
+.language-container {
+    margin-top: 20px;
+}
+
+select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #4a4a4a;
+    color: white;
+    border: 1px solid #666;
+}
+
 #game-logo {
     position: fixed;
     bottom: 12px;
@@ -50,15 +138,34 @@ button:hover {
     width: 64px;
     height: auto;
     opacity: 0.85;
-    pointer-events: none; /* prevents accidental clicks */
+    pointer-events: none;
     filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6))
             drop-shadow(0 0 6px rgba(0, 255, 0, 0.6))
             drop-shadow(0 0 6px rgba(0, 0, 255, 0.6));
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Optional nice touch: subtle hover if pointer-events are enabled later */
 #game-logo:hover {
     transform: scale(1.05);
     opacity: 1;
+}
+
+.offline-earnings {
+    background-color: #4CAF50;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
